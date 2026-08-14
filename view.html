@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sales Ledger — View &amp; Search</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div>
+      <h1>Sales Ledger</h1>
+      <div class="sub">Connected to Supabase</div>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <a class="tab-btn" href="index.html">Entry &amp; Update</a>
+    <a class="tab-btn active" href="view.html">View &amp; Search</a>
+  </nav>
+
+  <section id="pageView">
+
+    <div class="card">
+      <h2>Search sales</h2>
+      <p class="hint">Filter by any combination of fields below.</p>
+      <div class="filters">
+        <div class="field">
+          <label>Customer</label>
+          <select id="vCustomer"><option value="">All customers</option></select>
+        </div>
+        <div class="field">
+          <label>Product</label>
+          <select id="vProduct"><option value="">All products</option></select>
+        </div>
+        <div class="field">
+          <label>From date</label>
+          <input type="date" id="vFrom">
+        </div>
+        <div class="field">
+          <label>To date</label>
+          <input type="date" id="vTo">
+        </div>
+      </div>
+      <div class="actions">
+        <button class="primary" onclick="runSearch()">Search</button>
+        <button class="secondary" onclick="clearSearch()">Clear filters</button>
+        <div id="viewStatus" class="status"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Results</h2>
+      <p class="hint">Click any row to open it on the Entry &amp; Update page.</p>
+      <div class="table-wrap">
+        <table class="ledger">
+          <thead>
+            <tr>
+              <th>ID</th><th>Customer</th><th>Product</th><th class="num">Qty</th>
+              <th class="num">Cost</th><th class="num">Shipping</th><th class="num">Revenue</th>
+              <th class="num">Balance</th><th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="resultsBody">
+            <tr class="empty-row"><td colspan="9">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="totals-bar" id="totalsBar"></div>
+    </div>
+
+  </section>
+
+</div>
+
+<script src="js/supabase-client.js"></script>
+<script src="js/shared.js"></script>
+<script src="js/view.js"></script>
+</body>
+</html>
