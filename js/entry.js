@@ -111,17 +111,14 @@ async function saveSale(){
       if(error) throw error;
       setStatus(statusEl, 'Sale #' + editingId + ' updated.', 'ok');
     } else {
-      const { data: existing, error: fetchErr } = await sb.from(SALES_TABLE).select('purchase_id');
-      if(fetchErr) throw fetchErr;
-      const nextId = existing.length ? Math.max(...existing.map(r => r.purchase_id)) + 1 : 1;
-      const { error } = await sb.from(SALES_TABLE).insert({ purchase_id: nextId, ...payload });
+      const { data: inserted, error } = await sb.from(SALES_TABLE).insert(payload).select().single();
       if(error) throw error;
-      editingId = nextId;
-      document.getElementById('lookupId').value = nextId;
-      document.getElementById('formTitle').textContent = 'Editing sale #' + nextId;
+      editingId = inserted.purchase_id;
+      document.getElementById('lookupId').value = editingId;
+      document.getElementById('formTitle').textContent = 'Editing sale #' + editingId;
       document.getElementById('saveBtn').textContent = 'Save changes';
       document.getElementById('deleteBtn').style.display = '';
-      setStatus(statusEl, 'Sale #' + nextId + ' saved.', 'ok');
+      setStatus(statusEl, 'Sale #' + editingId + ' saved.', 'ok');
     }
   } catch(err){
     setStatus(statusEl, 'Error: ' + err.message, 'err');
