@@ -37,8 +37,8 @@ function readForm(){
     Customer_key: Number(document.getElementById('customerSelect').value) || null,
     Product_key: Number(document.getElementById('productSelect').value) || null,
     Quantity: numOrNull('fQuantity'),
-    cost: numOrNull('fCost'),
-    Shipping_cost: numOrNull('fShipping'),
+    selling_price: numOrNull('fCost'),
+    production_cost: numOrNull('fShipping'),
     Revenue: numOrNull('fRevenue'),
     Balance: numOrNull('fBalance'),
     Purchase_date: document.getElementById('fDate').value || null
@@ -54,8 +54,8 @@ function fillForm(row){
   document.getElementById('customerSelect').value = row.Customer_key ?? '';
   document.getElementById('productSelect').value = row.Product_key ?? '';
   document.getElementById('fQuantity').value = row.Quantity ?? '';
-  document.getElementById('fCost').value = row.cost ?? '';
-  document.getElementById('fShipping').value = row.Shipping_cost ?? '';
+  document.getElementById('fCost').value = row.selling_price ?? '';
+  document.getElementById('fShipping').value = row.production_cost ?? '';
   document.getElementById('fRevenue').value = row.Revenue ?? '';
   document.getElementById('fBalance').value = row.Balance ?? '';
   document.getElementById('fDate').value = row.Purchase_date ?? '';

@@ -40,8 +40,8 @@ function renderResults(rows){
       <td>${escapeHtml(custMap[r.Customer_key] || '—')}</td>
       <td>${escapeHtml(prodMap[r.Product_key] || '—')}</td>
       <td class="num">${r.Quantity ?? ''}</td>
-      <td class="num">${fmtMoney(r.cost)}</td>
-      <td class="num">${fmtMoney(r.Shipping_cost)}</td>
+      <td class="num">${fmtMoney(r.selling_price)}</td>
+      <td class="num">${fmtMoney(r.production_cost)}</td>
       <td class="num">${fmtMoney(r.Revenue)}</td>
       <td class="num ${r.Balance > 0 ? 'balance-due' : ''}">${fmtMoney(r.Balance)}</td>
       <td>${r.Purchase_date ?? ''}</td>
